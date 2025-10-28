@@ -1,12 +1,3 @@
-
-generator client {
-   provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
 model User {
   id                 String      @id @default(uuid())
   email              String      @unique
@@ -21,11 +12,10 @@ model User {
   patient            Patient?
 
   @@map("users")
-
 }
 
 model Admin {
-  id            String    @default(uuid())
+  id            String    @id @default(uuid())
   name          String
   email         String    @unique
   profilePhoto  String?
@@ -34,10 +24,9 @@ model Admin {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  user          User     @relation(fields:[email],references:[email])
+  user          User     @relation(fields: [email], references: [email])
 
   @@map("admins")
-
 }
 
 model Doctor {
@@ -46,9 +35,9 @@ model Doctor {
   email               String    @unique
   profilePhoto        String?
   contactNumber       String
-  address             String
+  address             String?
   registrationNumber  String
-  exprience           Int       @default(0)
+  experience          Int       @default(0)
   gender              Gender
   appointmentFee      Int
   qualification       String
@@ -57,12 +46,10 @@ model Doctor {
   isDeleted           Boolean   @default(false)
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
-  user                User     @relation(fields:[email],references:[email])
 
-
+  user                User     @relation(fields: [email], references: [email])
 
   @@map("doctors")
-
 }
 
 model Patient {
@@ -70,26 +57,12 @@ model Patient {
   email        String    @unique
   name         String
   profilePhoto String?
-  address      String
+  address      String?
   isDeleted    Boolean   @default(false)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-  user         User     @relation(fields:[email],references:[email])
+
+  user         User     @relation(fields: [email], references: [email])
 
   @@map("patients")
-}
-
-enum UserRole {
-  PATIENT
-  DOCTOR
-  ADMIN
-}
-enum UserStatus {
- ACTIVE
- INACTIVE
- DELETED
-}
-enum Gender {
-MALE
-FEMALE
 }
