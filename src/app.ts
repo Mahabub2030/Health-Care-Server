@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
-import { userRoutes } from "./app/modules/user/user.router";
+import router from "./app/routes";
 import config from "./config";
 
 const app: Application = express();
@@ -17,7 +17,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1", userRoutes);
+app.use("/api/v1", router);
 
 app.get("/", (req: Request, res: Response) => {
   res.send({
