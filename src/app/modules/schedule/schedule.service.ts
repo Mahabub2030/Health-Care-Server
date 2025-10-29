@@ -98,8 +98,7 @@ const schedulesForDoctor = async (
   const doctorSchedules = await prisma.doctorSchedules.findMany({
     where: {
       doctor: {
-        // some isuue here
-        // email: user.email,
+        email: user.email,
       },
     },
     select: {
