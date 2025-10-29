@@ -8,7 +8,7 @@ import { UserValidation } from "./user.validation";
 
 const router = express.Router();
 
-router.get("/", auth(UserRole.ADMIN), UserController.getAllFromDB);
+router.get("/", UserController.getAllFromDB);
 
 router.post(
   "/create-patient",
