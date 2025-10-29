@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { addHours, addMinutes, format } from "date-fns";
-import { IOptions, paginationHelper } from "../../helper/paginationHelper";
+
+import { IOptions, paginationHelper } from "../../helpers/paginationHelper";
 import { prisma } from "../../shared/prisma";
 import { IJWTPayload } from "../../types/common";
 

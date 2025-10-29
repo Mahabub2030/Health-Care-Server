@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import pick from "../../helper/pick";
+
+import pick from "../../helpers/pick";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
 import { IJWTPayload } from "../../types/common";
