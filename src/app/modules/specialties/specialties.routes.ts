@@ -1,5 +1,6 @@
 import { UserRole } from "@prisma/client";
 import express, { NextFunction, Request, Response } from "express";
+
 import { fileUploder } from "../../helpers/fileUpdate";
 import auth from "../../middlewares/auth";
 import { SpecialtiesController } from "./specialties.controller";

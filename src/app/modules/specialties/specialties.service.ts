@@ -1,7 +1,9 @@
 import { Specialties } from "@prisma/client";
 import { Request } from "express";
+
 import { fileUploder } from "../../helpers/fileUpdate";
 import { prisma } from "../../shared/prisma";
+
 const inserIntoDB = async (req: Request) => {
   const file = req.file;
 
