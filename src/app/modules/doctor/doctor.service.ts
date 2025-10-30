@@ -205,7 +205,9 @@ const softDelete = async (id: string): Promise<Doctor> => {
   });
 };
 
-const getAISuggestions = async () => {};
+const getAISuggestions = async () => {
+  console.log(getAISuggestions);
+};
 
 export const DoctorService = {
   getAllFromDB,
