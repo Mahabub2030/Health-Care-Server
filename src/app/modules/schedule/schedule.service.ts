@@ -1,13 +1,16 @@
-import { Prisma } from "@prisma/client";
 import { addHours, addMinutes, format } from "date-fns";
-import { IOptions, paginationHelper } from "../../helpers/paginationHelper";
 import { prisma } from "../../shared/prisma";
+
+import { Prisma } from "@prisma/client";
+import { IOptions, paginationHelper } from "../../helpers/paginationHelper";
 import { IJWTPayload } from "../../types/common";
 
 const insertIntoDB = async (payload: any) => {
   const { startTime, endTime, startDate, endDate } = payload;
+
   const intervalTime = 30;
   const schedules = [];
+
   const currentDate = new Date(startDate);
   const lastDate = new Date(endDate);
 
@@ -31,6 +34,7 @@ const insertIntoDB = async (payload: any) => {
         Number(endTime.split(":")[1])
       )
     );
+
     while (startDateTime < endDateTime) {
       const slotStartDateTime = startDateTime; // 10:30
       const slotEndDateTime = addMinutes(startDateTime, intervalTime); // 11:00
@@ -43,16 +47,19 @@ const insertIntoDB = async (payload: any) => {
       const existingSchedule = await prisma.schedule.findFirst({
         where: scheduleData,
       });
+
       if (!existingSchedule) {
         const result = await prisma.schedule.create({
           data: scheduleData,
         });
         schedules.push(result);
       }
+
       slotStartDateTime.setMinutes(
         slotStartDateTime.getMinutes() + intervalTime
       );
     }
+
     currentDate.setDate(currentDate.getDate() + 1);
   }
 

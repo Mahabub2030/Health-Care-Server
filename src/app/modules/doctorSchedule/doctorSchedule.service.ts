@@ -12,17 +12,14 @@ const insertIntoDB = async (
       email: user.email,
     },
   });
-
   const doctorScheduleData = payload.scheduleIds.map((scheduleId) => ({
     doctorId: doctorData.id,
     scheduleId,
   }));
-
   return await prisma.doctorSchedules.createMany({
     data: doctorScheduleData,
   });
 };
-
 export const DoctorScheduleService = {
   insertIntoDB,
 };
