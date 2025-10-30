@@ -12,6 +12,7 @@ const insertIntoDB = catchAsync(
       user as IJWTPayload,
       req.body
     );
+    console.log(user);
 
     sendResponse(res, {
       statusCode: 201,
