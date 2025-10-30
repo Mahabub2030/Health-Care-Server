@@ -20,4 +20,6 @@ export default {
     REFRESH_TOKEN_EXPIRATION: process.env.REFRESH_TOKEN_EXPIRATION as string,
   },
   openRouterApiKey: process.env.OPENROUTER_API_KEY as string,
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY as string,
+  client_Key: process.env.CLIENT_URL as string,
 };
